@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include "RTClib.h"
 
-//#define FIRST
+//#define FORCE_ADJ
 
 RTC_DS3231 rtc;
 
@@ -17,7 +17,7 @@ void setup () {
     while (1);
   }
 
-#ifdef FIRST
+#ifdef FORCE_ADJ
     DateTime dt(F(__DATE__), F(__TIME__));
     dt = dt + TimeSpan(6);
 
