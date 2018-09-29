@@ -2,6 +2,8 @@
 #include <Wire.h>
 #include "RTClib.h"
 
+//#define FIRST
+
 RTC_DS3231 rtc;
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -15,20 +17,20 @@ void setup () {
     while (1);
   }
 
-  DateTime dt(F(__DATE__), F(__TIME__));
-  dt = dt + TimeSpan(6);
+#ifdef FIRST
+    DateTime dt(F(__DATE__), F(__TIME__));
+    dt = dt + TimeSpan(6);
 
-  rtc.adjust(dt);
-
-#if 0
-  if (rtc.lostPower()) {
-    Serial.println("RTC lost power, lets set the time!");
-    // following line sets the RTC to the date & time this sketch was compiled
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-    // This line sets the RTC with an explicit date & time, for example to set
-    // January 21, 2014 at 3am you would call:
-    // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
-  }
+    rtc.adjust(dt);
+#else
+    if (rtc.lostPower()) {
+        Serial.println("RTC lost power, lets set the time!");
+        // following line sets the RTC to the date & time this sketch was compiled
+        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+        // This line sets the RTC with an explicit date & time, for example to set
+        // January 21, 2014 at 3am you would call:
+        // rtc.adjust(DateTime(2014, 1, 21, 3, 0, 0));
+    }
 #endif
 }
 
