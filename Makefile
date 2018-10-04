@@ -12,9 +12,5 @@ BOARD_TAG    = uno
 BOARD_SUB = 16MHzatmega328
 #MONITOR_PORT = /dev/ttyUSB0
 MONITOR_PORT = /dev/ttyACM0
-ARDUINO_CORE_PATH = /usr/share/arduino/hardware/arduino/avr/cores/arduino
-BOARDS_TXT = /usr/share/arduino/hardware/arduino/avr/boards.txt
-ARDUINO_VAR_PATH = /usr/share/arduino/hardware/arduino/avr/variants
-BOOTLOADER_PARENT = /usr/share/arduino/hardware/arduino/avr/bootloaders
 
 include ~/lib/Arduino-Makefile/Arduino.mk
